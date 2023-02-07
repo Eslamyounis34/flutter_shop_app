@@ -5,6 +5,7 @@ import 'package:flutter_shop_app/modules/shop_app/on_boarding/shop_login/shop_lo
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../shared/colors.dart';
+import '../../../shared/components/components.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   @override
@@ -34,7 +35,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        actions: [
+          TextButton(onPressed: () {
+            navigteAndFinish(context, ShopLoginScreen());
+          }, child: Text('SKIP'))
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -52,8 +60,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       print('Last');
                       isLast = true;
                     });
-                  }else{
-                    isLast= false;
+                  } else {
+                    isLast = false;
                   }
                 },
               ),
@@ -78,7 +86,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast) {
-                      navigateTo(context, ShopLoginScreen());
+                      navigteAndFinish(context, ShopLoginScreen());
                     } else {
                       boardingController.nextPage(
                           duration: Duration(microseconds: 750),
@@ -95,7 +103,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  Widget buildingBoardingItem(BoardingModel model) => Column(
+  Widget buildingBoardingItem(BoardingModel model) =>
+      Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(child: Image(image: AssetImage('${model.image}'))),
@@ -116,6 +125,5 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ],
       );
 
-  void navigateTo(context, widget) =>
-      Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+
 }

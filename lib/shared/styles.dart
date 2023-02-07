@@ -7,7 +7,7 @@ ThemeData darkTheme = ThemeData(
     primarySwatch: Colors.deepOrange,
     appBarTheme: const AppBarTheme(
         backgroundColor: Colors.red,
-        elevation: 15,
+        // elevation: 15,
         centerTitle: true,
         backwardsCompatibility: false,
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -16,7 +16,7 @@ ThemeData darkTheme = ThemeData(
             color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
-        elevation: 12,
+        // elevation: 12,
         unselectedItemColor: Colors.grey,
         backgroundColor: HexColor('333739'),
         selectedItemColor: Colors.deepOrange),
@@ -27,18 +27,18 @@ ThemeData darkTheme = ThemeData(
 ThemeData lightTheme = ThemeData(
     primarySwatch: Colors.deepOrange,
     appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.red,
-        elevation: 15,
+        backgroundColor: Colors.white,
+         elevation: 0,
         centerTitle: true,
         backwardsCompatibility: false,
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.red, statusBarBrightness: Brightness.dark),
+            statusBarColor: Colors.white, statusBarBrightness: Brightness.dark),
         titleTextStyle: TextStyle(
             color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
     scaffoldBackgroundColor: Colors.white,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
-        elevation: 12,
+        // elevation: 12,
         selectedItemColor: Colors.deepOrange),
     textTheme: const TextTheme(
         bodyText1: TextStyle(

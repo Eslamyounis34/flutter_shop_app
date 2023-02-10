@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop_app/models/BoardingModel.dart';
-import 'package:flutter_shop_app/modules/shop_app/on_boarding/shop_login/shop_login_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../shared/colors.dart';
 import '../../../shared/components/components.dart';
+import '../shop_login/shop_login_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   @override

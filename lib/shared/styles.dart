@@ -19,18 +19,21 @@ ThemeData darkTheme = ThemeData(
         // elevation: 12,
         unselectedItemColor: Colors.grey,
         backgroundColor: HexColor('333739'),
-        selectedItemColor: Colors.deepOrange),
+        selectedItemColor: Colors.blue),
     textTheme: const TextTheme(
         bodyText1: TextStyle(
             color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)));
 
 ThemeData lightTheme = ThemeData(
-    primarySwatch: Colors.deepOrange,
+    primarySwatch: Colors.blue,
     appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
          elevation: 0,
         centerTitle: true,
         backwardsCompatibility: false,
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.white, statusBarBrightness: Brightness.dark),
         titleTextStyle: TextStyle(

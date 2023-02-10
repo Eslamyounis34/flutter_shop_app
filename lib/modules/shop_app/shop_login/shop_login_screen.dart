@@ -70,6 +70,7 @@ class ShopLoginScreen extends StatelessWidget {
                             type: TextInputType.visiblePassword,
                             label: 'Password',
                             prefix: Icons.lock_clock_outlined,
+                            sufficIcon: Icons.remove_red_eye,
                             validate: (String? value) {
                               if (value!.isEmpty) {
                                 return 'please enter your password ';

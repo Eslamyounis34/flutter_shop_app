@@ -15,17 +15,17 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<BoardingModel> boardingList = [
     BoardingModel(
-        image: 'assets/images/store.png',
-        title: 'Boarding One',
-        body: 'Content 1'),
+        image: 'assets/images/store_boarding.jpg',
+        title: 'HY , ',
+        body: 'Browse Our Online Store'),
     BoardingModel(
-        image: 'assets/images/store.png',
-        title: 'Boarding Two',
-        body: 'Content 2'),
+        image: 'assets/images/store_fourth.jpg',
+        title: 'Hot Offers',
+        body: 'Check Our Daily Offers And Don\'t Wasting Time'),
     BoardingModel(
-        image: 'assets/images/store.png',
-        title: 'Boarding Three',
-        body: 'Content 3'),
+        image: 'assets/images/store_boarding_second.jpg',
+        title: 'Hurry Up',
+        body: 'Order Your Favourite Items And Enjoy'),
   ];
 
   var boardingController = PageController();
@@ -40,7 +40,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           TextButton(onPressed: () {
             navigteAndFinish(context, ShopLoginScreen());
-          }, child: Text('SKIP'))
+          }, child: Text('SKIP',style: TextStyle(fontSize: 20,color: Colors.black),))
         ],
       ),
       body: Padding(
@@ -116,11 +116,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
           ),
           SizedBox(
-            height: 15,
+            height: 8,
           ),
           Text(
             "${model.body}",
-            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold,color: Colors.grey),
           )
         ],
       );

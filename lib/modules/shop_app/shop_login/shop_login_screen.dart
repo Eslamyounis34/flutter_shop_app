@@ -6,6 +6,7 @@ import 'package:flutter_shop_app/modules/shop_app/shop_login/cubit/login_cubit.d
 import 'package:flutter_shop_app/modules/shop_app/shop_login/cubit/login_states.dart';
 import 'package:flutter_shop_app/modules/shop_app/shop_register/ShopRegisterScreen.dart';
 import 'package:flutter_shop_app/shared/components/components.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ShopLoginScreen extends StatelessWidget {
   ShopLoginScreen({Key? key}) : super(key: key);
@@ -18,7 +19,34 @@ class ShopLoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) => ShopLoginCubit(),
       child: BlocConsumer<ShopLoginCubit, ShopLoginStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is ShopLoginSuccessState) {
+            var loginModel = state.loginModel;
+            if (loginModel.status == true) {
+              print(loginModel.data!.email.toString());
+              print(loginModel.data!.token.toString());
+
+              Fluttertoast.showToast(
+                  msg: loginModel.message.toString(),
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.SNACKBAR,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.black,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+            } else {
+              print(loginModel.message.toString());
+              Fluttertoast.showToast(
+                  msg: loginModel.message.toString(),
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.SNACKBAR,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.black,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+            }
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(),
@@ -66,11 +94,16 @@ class ShopLoginScreen extends StatelessWidget {
                           height: 10,
                         ),
                         defaultTextField(
+                            isPassword: ShopLoginCubit.get(context).isPassword,
+                            suffixPressed: () {
+                              ShopLoginCubit.get(context)
+                                  .changePasswordVisibility();
+                            },
                             controller: passController,
                             type: TextInputType.visiblePassword,
                             label: 'Password',
                             prefix: Icons.lock_clock_outlined,
-                            sufficIcon: Icons.remove_red_eye,
+                            sufficIcon: ShopLoginCubit.get(context).suffix,
                             validate: (String? value) {
                               if (value!.isEmpty) {
                                 return 'please enter your password ';
@@ -85,7 +118,8 @@ class ShopLoginScreen extends StatelessWidget {
                               width: double.infinity,
                               btnText: 'LOGIN',
                               function: () {
-                                print('test credentials '+passController.text);
+                                print(
+                                    'test credentials ' + passController.text);
                                 if (formKey.currentState!.validate()) {
                                   ShopLoginCubit.get(context).userLogin(
                                       email: emailController.text,

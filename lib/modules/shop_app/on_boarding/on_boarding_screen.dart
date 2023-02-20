@@ -38,9 +38,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         actions: [
-          TextButton(onPressed: () {
-            navigteAndFinish(context, ShopLoginScreen());
-          }, child: Text('SKIP',style: TextStyle(fontSize: 20,color: Colors.black),))
+          TextButton(
+              onPressed: () {
+                navigteAndFinish(context, ShopLoginScreen());
+              },
+              child: Text(
+                'SKIP',
+                style: TextStyle(fontSize: 20, color: Colors.black),
+              ))
         ],
       ),
       body: Padding(
@@ -103,8 +108,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  Widget buildingBoardingItem(BoardingModel model) =>
-      Column(
+  Widget buildingBoardingItem(BoardingModel model) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(child: Image(image: AssetImage('${model.image}'))),
@@ -120,10 +124,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
           Text(
             "${model.body}",
-            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold,color: Colors.grey),
+            style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey),
           )
         ],
       );
-
-
 }

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
 class DioHelper {
-  static  Dio? dio;
+  static Dio? dio;
 
   static init() {
     dio = Dio(BaseOptions(
@@ -23,6 +23,6 @@ class DioHelper {
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
   }) async {
-    return  dio!.post(url, data: data);
+    return dio!.post(url, data: data);
   }
 }

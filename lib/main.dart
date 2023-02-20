@@ -5,16 +5,12 @@ import 'package:flutter_shop_app/modules/shop_app/on_boarding/on_boarding_screen
 import 'package:flutter_shop_app/shared/data/remote/dio_helper.dart';
 import 'package:flutter_shop_app/shared/styles.dart';
 
-void main() async{
+void main() async {
   HttpOverrides.global = new MyHttpOverrides();
 
   DioHelper.init();
-  runApp( MyApp());
-
-
+  runApp(MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -22,7 +18,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -33,12 +28,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHttpOverrides extends HttpOverrides{
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context){
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
-
-

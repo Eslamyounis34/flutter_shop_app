@@ -28,12 +28,10 @@ ThemeData lightTheme = ThemeData(
     primarySwatch: Colors.blue,
     appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
-         elevation: 0,
+        elevation: 0,
         centerTitle: true,
         backwardsCompatibility: false,
-        iconTheme: IconThemeData(
-          color: Colors.black
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.white, statusBarBrightness: Brightness.dark),
         titleTextStyle: TextStyle(

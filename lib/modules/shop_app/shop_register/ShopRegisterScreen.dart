@@ -10,9 +10,7 @@ class ShopRegisterScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Register',
-          style: TextStyle(
-            color: Colors.black
-          ),
+          style: TextStyle(color: Colors.black),
         ),
       ),
     );

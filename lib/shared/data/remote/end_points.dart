@@ -1,1 +1,1 @@
-final LOGIN ='login';
+final LOGIN = 'login';

@@ -13,10 +13,6 @@ class CacheHelper {
     return await sharedPreferences.setBool(key, value);
   }
 
-  static bool? getData({required String key}) {
-    return sharedPreferences.getBool(key);
-  }
-
 //One method used to save in shared prefrences with deferrent types
   static Future<bool> saveData(
       {required String key, required dynamic value}) async {
@@ -31,5 +27,10 @@ class CacheHelper {
     }
 
     return await sharedPreferences.setDouble(key, value);
+  }
+
+//one method for getting any value with any type from shared pref.
+  static dynamic getData({required String key}) {
+    return sharedPreferences.get(key);
   }
 }

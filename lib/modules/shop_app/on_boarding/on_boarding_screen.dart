@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop_app/models/BoardingModel.dart';
+import 'package:flutter_shop_app/shared/data/local/chache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../shared/colors.dart';
@@ -11,6 +12,14 @@ class OnBoardingScreen extends StatefulWidget {
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
+
+// void submitOnBoarding() {
+//   CacheHelper.saveData(key: "onBoarding", value: true).then((value) {
+//     if (value) {
+//       navigteAndFinish(context, ShopLoginScreen());
+//     }
+//   });
+// }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<BoardingModel> boardingList = [
@@ -40,7 +49,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           TextButton(
               onPressed: () {
-                navigteAndFinish(context, ShopLoginScreen());
+                CacheHelper.saveData(key: "onBoarding", value: true)
+                    .then((value) {
+                  if (value) {
+                    navigteAndFinish(context, ShopLoginScreen());
+                  }
+                });
               },
               child: Text(
                 'SKIP',
@@ -91,7 +105,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast) {
-                      navigteAndFinish(context, ShopLoginScreen());
+                      CacheHelper.saveData(key: "onBoarding", value: true)
+                          .then((value) {
+                        if (value) {
+                          navigteAndFinish(context, ShopLoginScreen());
+                        }
+                      });
                     } else {
                       boardingController.nextPage(
                           duration: Duration(microseconds: 750),

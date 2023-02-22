@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_shop_app/layout/shop_layout/shop_layout.dart';
 import 'package:flutter_shop_app/modules/shop_app/on_boarding/on_boarding_screen.dart';
 import 'package:flutter_shop_app/modules/shop_app/shop_login/shop_login_screen.dart';
 import 'package:flutter_shop_app/shared/data/local/chache_helper.dart';
@@ -13,26 +14,37 @@ void main() async {
 
   DioHelper.init();
   await CacheHelper.init();
+
+  Widget startingWidget;
+  String token = CacheHelper.getData(key: "token") ?? "";
   bool isBoarding = CacheHelper.getData(key: "onBoarding") ?? false;
+
+  if (isBoarding != false) {
+    if (token.isEmpty)
+      startingWidget = ShopLoginScreen();
+    else
+      startingWidget = ShopLayout();
+  } else {
+    startingWidget = OnBoardingScreen();
+  }
   print("testboarding" + isBoarding.toString());
   runApp(MyApp(
-    onBoarding: isBoarding,
+    widget: startingWidget,
   ));
 }
 
 class MyApp extends StatelessWidget {
-  final bool onBoarding;
-  MyApp({required this.onBoarding});
+  final Widget widget;
+  MyApp({required this.widget});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      home: onBoarding ? ShopLoginScreen() : OnBoardingScreen(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        home: widget);
   }
 }
 

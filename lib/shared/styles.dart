@@ -40,7 +40,7 @@ ThemeData lightTheme = ThemeData(
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
         // elevation: 12,
-        selectedItemColor: Colors.deepOrange),
+        selectedItemColor: Colors.blue),
     textTheme: const TextTheme(
         bodyText1: TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600)));

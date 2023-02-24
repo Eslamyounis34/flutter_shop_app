@@ -65,7 +65,7 @@ class ShopHome extends StatelessWidget {
                 mainAxisSpacing: 1,
                 crossAxisSpacing: 2,
                 crossAxisCount: 2,
-                childAspectRatio: 1 / 1.58,
+                childAspectRatio: 1 / 1.7,
                 children: List.generate(model.data!.products.length,
                     (index) => buildGridItem(model.data!.products[index])),
               ),

@@ -11,14 +11,17 @@ class DioHelper {
     ));
   }
 
-  static Future<Response?> getData(
+  static Future<Response> getData(
       {required String url,
       Map<String, dynamic>? query,
-      String lang = 'ar',
+      String lang = 'en',
       required String token}) async {
     dio!.options.headers = {
       'Content-Type': 'application/json',
       'lang': lang,
+      'Connection': 'keep-alive',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Accept': '*/*',
       'Authorization': token,
     };
     return await dio!.get(url, queryParameters: query);

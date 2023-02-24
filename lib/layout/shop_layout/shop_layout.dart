@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shop_app/layout/shop_layout/cubit/shop_cubit.dart';
 import 'package:flutter_shop_app/layout/shop_layout/cubit/shop_states.dart';
-import 'package:flutter_shop_app/modules/shop_search/shop_search.dart';
+import 'package:flutter_shop_app/modules/shop_app/shop_search/shop_search.dart';
 import 'package:flutter_shop_app/shared/components/components.dart';
 
 class ShopLayout extends StatelessWidget {

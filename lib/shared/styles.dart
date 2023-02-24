@@ -25,6 +25,7 @@ ThemeData darkTheme = ThemeData(
             color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)));
 
 ThemeData lightTheme = ThemeData(
+    fontFamily: 'Cairo',
     primarySwatch: Colors.blue,
     appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,

@@ -18,7 +18,7 @@ class ShopCubit extends Cubit<ShopStates> {
   static ShopCubit get(context) => BlocProvider.of(context);
 
   int current_index = 0;
-  late HomeModel homeModel;
+  HomeModel? homeModel;
 
   List<Widget> screens = [
     ShopHome(),
@@ -34,13 +34,12 @@ class ShopCubit extends Cubit<ShopStates> {
 
   void getHomeData() {
     emit(ShopHomeDataLoading());
-    String token = CacheHelper.getData(key: 'token');
-    print('token ' + token.toString());
-    DioHelper.getData(url: HOME, token: token).then((value) {
-      homeModel = HomeModel.fromJson(value!.data);
-      // print(homeModel.data!.banners![0].image.toString());
-      print(homeModel.status.toString());
+    // String token = CacheHelper.getData(key: 'token');
+    // print('token ' + token.toString());
+    DioHelper.getData(url: HOME, token: '').then((value) {
       emit(ShopHomeDataSuccess());
+      homeModel = HomeModel.fromJson(value!.data);
+      print(homeModel!.status.toString());
     }).catchError((onError) {
       print('Error ' + onError.toString());
       emit(ShopHomeDataError());

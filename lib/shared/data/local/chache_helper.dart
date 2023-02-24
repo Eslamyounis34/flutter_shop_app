@@ -29,7 +29,7 @@ class CacheHelper {
     return await sharedPreferences.setDouble(key, value);
   }
 
-//one method for getting any value with any type from shared pref.
+//one method for getting any value with any type from shared
   static dynamic getData({required String key}) {
     return sharedPreferences.get(key);
   }

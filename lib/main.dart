@@ -12,10 +12,8 @@ import 'package:flutter_shop_app/shared/styles.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HttpOverrides.global = new MyHttpOverrides();
-
-  DioHelper.init();
   await CacheHelper.init();
+  DioHelper.init();
 
   Widget startingWidget;
   String token = CacheHelper.getData(key: "token") ?? "";

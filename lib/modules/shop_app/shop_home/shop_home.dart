@@ -36,10 +36,18 @@ class ShopHome extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: CarouselSlider(
                   items: model.data!.banners
-                      .map((e) => Image(
-                            image: NetworkImage(e.image),
-                            width: double.infinity,
-                            fit: BoxFit.cover,
+                      .map((e) => Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(35),
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(8)),
+                                  image: DecorationImage(
+                                      image: NetworkImage(e.image),
+                                      fit: BoxFit.cover)),
+                              width: 600,
+                            ),
                           ))
                       .toList(),
                   options: CarouselOptions(
@@ -48,6 +56,8 @@ class ShopHome extends StatelessWidget {
                       enableInfiniteScroll: true,
                       reverse: false,
                       autoPlay: true,
+                      enlargeCenterPage: true,
+                      aspectRatio: 5,
                       viewportFraction: 1,
                       autoPlayInterval: Duration(seconds: 3),
                       autoPlayAnimationDuration: Duration(seconds: 1),

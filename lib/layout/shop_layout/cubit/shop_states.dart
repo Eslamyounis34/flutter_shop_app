@@ -15,3 +15,9 @@ class ShopHomeDataLoading extends ShopStates {}
 class ShopHomeDataSuccess extends ShopStates {}
 
 class ShopHomeDataError extends ShopStates {}
+
+class ShopCategoriesDataLoading extends ShopStates {}
+
+class ShopCategoriesDataSuccess extends ShopStates {}
+
+class ShopCategoriesDataError extends ShopStates {}

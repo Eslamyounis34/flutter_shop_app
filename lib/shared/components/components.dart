@@ -83,3 +83,8 @@ Color toastColor(ToastStates states) {
   }
   return color;
 }
+
+Widget myDivider() => Container(
+      height: 2.00,
+      color: Colors.grey[200],
+    );

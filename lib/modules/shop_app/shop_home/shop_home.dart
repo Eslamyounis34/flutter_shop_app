@@ -178,7 +178,16 @@ class ShopHome extends StatelessWidget {
                         ),
                       Spacer(),
                       IconButton(
-                          onPressed: () {}, icon: Icon(Icons.favorite_border))
+                          onPressed: () {},
+                          icon: CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.grey,
+                            child: Icon(
+                              Icons.favorite_border,
+                              color: Colors.white,
+                              size: 14,
+                            ),
+                          ))
                     ],
                   )
                 ],

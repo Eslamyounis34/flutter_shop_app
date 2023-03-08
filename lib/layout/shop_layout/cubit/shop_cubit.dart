@@ -68,14 +68,21 @@ class ShopCubit extends Cubit<ShopStates> {
   }
 
   void changeFavourite(int productID) {
+    favorites[productID] = !favorites[productID]!;
+    emit(ShopChangeFavoritesSuccess());
+
     print(token);
     DioHelper.postData(
             url: FAVORITES, data: {'product_id': productID}, token: token)
         .then((value) {
-      favoritesModel = FavoritesModel.fromJson(value.extra);
       print('Favourites Value : ' + value.toString());
+      favoritesModel = FavoritesModel.fromJson(value.extra);
+      if (!favoritesModel!.status!) {
+        favorites[productID] = !favorites[productID]!;
+      }
       emit(ShopChangeFavoritesSuccess());
     }).catchError((onError) {
+      favorites[productID] = !favorites[productID]!;
       emit(ShopChangeFavoritesError());
       print('Error Favorites : ' + onError.toString());
     });

@@ -24,13 +24,14 @@ class ShopHome extends StatelessWidget {
           return BuildCondition(
             condition: cubit.homeModel != null && cubit.categoriesModel != null,
             builder: (context) =>
-                homeBuilder(cubit.homeModel!, cubit.categoriesModel!),
+                homeBuilder(cubit.homeModel!, cubit.categoriesModel!, context),
             fallback: (context) => Center(child: CircularProgressIndicator()),
           );
         });
   }
 
-  Widget homeBuilder(HomeModel model, CategoriesModel categoriesModel) =>
+  Widget homeBuilder(
+          HomeModel model, CategoriesModel categoriesModel, context) =>
       SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -112,15 +113,17 @@ class ShopHome extends StatelessWidget {
                 crossAxisSpacing: 2,
                 crossAxisCount: 2,
                 childAspectRatio: 1 / 1.7,
-                children: List.generate(model.data!.products.length,
-                    (index) => buildGridItem(model.data!.products[index])),
+                children: List.generate(
+                    model.data!.products.length,
+                    (index) =>
+                        buildGridItem(model.data!.products[index], context)),
               ),
             )
           ],
         ),
       );
 
-  Widget buildGridItem(ProductModel product) => Container(
+  Widget buildGridItem(ProductModel product, context) => Container(
         color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,10 +181,16 @@ class ShopHome extends StatelessWidget {
                         ),
                       Spacer(),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            ShopCubit.get(context).changeFavourite(product.id!);
+                            print('test');
+                          },
                           icon: CircleAvatar(
                             radius: 15,
-                            backgroundColor: Colors.grey,
+                            backgroundColor:
+                                ShopCubit.get(context).favorites[product.id]!
+                                    ? defaultColor
+                                    : Colors.grey,
                             child: Icon(
                               Icons.favorite_border,
                               color: Colors.white,

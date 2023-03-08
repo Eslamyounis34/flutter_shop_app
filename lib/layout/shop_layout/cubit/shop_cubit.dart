@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shop_app/layout/shop_layout/cubit/shop_states.dart';
 import 'package:flutter_shop_app/models/categories_model.dart';
+import 'package:flutter_shop_app/models/change_favorites_model.dart';
 import 'package:flutter_shop_app/models/login_model.dart';
 import 'package:flutter_shop_app/modules/shop_app/shop_categories/shop_categories.dart';
 import 'package:flutter_shop_app/modules/shop_app/shop_favourites/shop_favourites.dart';
@@ -21,6 +22,9 @@ class ShopCubit extends Cubit<ShopStates> {
   int current_index = 0;
   HomeModel? homeModel;
   CategoriesModel? categoriesModel;
+  FavoritesModel? favoritesModel;
+  Map<int, bool> favorites = {};
+  var token = CacheHelper.getData(key: 'token');
 
   List<Widget> screens = [
     ShopHome(),
@@ -39,6 +43,11 @@ class ShopCubit extends Cubit<ShopStates> {
     DioHelper.getData(url: HOME, token: '').then((value) {
       emit(ShopHomeDataSuccess());
       homeModel = HomeModel.fromJson(value!.data);
+      homeModel!.data!.products.forEach((element) {
+        favorites.addAll({
+          element.id!: element.inFavorite!,
+        });
+      });
       print(homeModel!.status.toString());
     }).catchError((onError) {
       print('Error ' + onError.toString());
@@ -55,6 +64,20 @@ class ShopCubit extends Cubit<ShopStates> {
     }).catchError((onError) {
       print('Error ' + onError.toString());
       emit(ShopCategoriesDataError());
+    });
+  }
+
+  void changeFavourite(int productID) {
+    print(token);
+    DioHelper.postData(
+            url: FAVORITES, data: {'product_id': productID}, token: token)
+        .then((value) {
+      favoritesModel = FavoritesModel.fromJson(value.extra);
+      print('Favourites Value : ' + value.toString());
+      emit(ShopChangeFavoritesSuccess());
+    }).catchError((onError) {
+      emit(ShopChangeFavoritesError());
+      print('Error Favorites : ' + onError.toString());
     });
   }
 }

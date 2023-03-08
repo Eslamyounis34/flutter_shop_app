@@ -21,3 +21,7 @@ class ShopCategoriesDataLoading extends ShopStates {}
 class ShopCategoriesDataSuccess extends ShopStates {}
 
 class ShopCategoriesDataError extends ShopStates {}
+
+class ShopChangeFavoritesSuccess extends ShopStates {}
+
+class ShopChangeFavoritesError extends ShopStates {}

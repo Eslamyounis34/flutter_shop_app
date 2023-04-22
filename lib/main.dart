@@ -20,10 +20,11 @@ void main() async {
   bool isBoarding = CacheHelper.getData(key: "onBoarding") ?? false;
 
   if (isBoarding != false) {
-    if (token.isEmpty)
+    if (token.isEmpty) {
       startingWidget = ShopLoginScreen();
-    else
+    } else {
       startingWidget = ShopLayout();
+    }
   } else {
     startingWidget = OnBoardingScreen();
   }
@@ -37,7 +38,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final Widget widget;
-  MyApp({required this.widget});
+  const MyApp({Key? key, required this.widget}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) => ShopCubit()
                 ..getHomeData()
-                ..getCategoriesData()),
+                ..getCategoriesData()
+                ..getFavourites()),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

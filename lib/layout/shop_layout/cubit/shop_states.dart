@@ -25,3 +25,7 @@ class ShopCategoriesDataError extends ShopStates {}
 class ShopChangeFavoritesSuccess extends ShopStates {}
 
 class ShopChangeFavoritesError extends ShopStates {}
+
+class ShopGetFavoritesError extends ShopStates {}
+
+class ShopGetFavoritesSuccess extends ShopStates {}

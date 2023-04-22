@@ -25,7 +25,8 @@ class ShopHome extends StatelessWidget {
             condition: cubit.homeModel != null && cubit.categoriesModel != null,
             builder: (context) =>
                 homeBuilder(cubit.homeModel!, cubit.categoriesModel!, context),
-            fallback: (context) => Center(child: CircularProgressIndicator()),
+            fallback: (context) =>
+                const Center(child: CircularProgressIndicator()),
           );
         });
   }
@@ -33,7 +34,7 @@ class ShopHome extends StatelessWidget {
   Widget homeBuilder(
           HomeModel model, CategoriesModel categoriesModel, context) =>
       SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Padding(
@@ -42,13 +43,14 @@ class ShopHome extends StatelessWidget {
                   items: model.data!.banners
                       .map((e) => Center(
                             child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(35),
                                       bottomLeft: Radius.circular(8),
                                       bottomRight: Radius.circular(8)),
                                   image: DecorationImage(
-                                      image: NetworkImage(e.image),
+                                      image: AssetImage(
+                                          'assets/images/store_boarding.jpg'),
                                       fit: BoxFit.cover)),
                               width: 600,
                             ),
@@ -63,12 +65,12 @@ class ShopHome extends StatelessWidget {
                       enlargeCenterPage: true,
                       aspectRatio: 5,
                       viewportFraction: 1,
-                      autoPlayInterval: Duration(seconds: 3),
-                      autoPlayAnimationDuration: Duration(seconds: 1),
+                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayAnimationDuration: const Duration(seconds: 1),
                       autoPlayCurve: Curves.fastOutSlowIn,
                       scrollDirection: Axis.horizontal)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
@@ -76,29 +78,29 @@ class ShopHome extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Categories',
                     style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
                   ),
-                  Container(
+                  SizedBox(
                     height: 100,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) =>
                             categoryItem(categoriesModel.data!.data[index]),
                         separatorBuilder: (context, index) =>
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                         itemCount: categoriesModel.data!.data.length),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     'New Products',
                     style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],
@@ -108,7 +110,7 @@ class ShopHome extends StatelessWidget {
               color: Colors.grey[300],
               child: GridView.count(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 mainAxisSpacing: 1,
                 crossAxisSpacing: 2,
                 crossAxisCount: 2,
@@ -139,8 +141,8 @@ class ShopHome extends StatelessWidget {
                 if (product.oldPrice! != product.price!)
                   Container(
                     color: Colors.red,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
                         'DISCOUNT',
                         style: TextStyle(fontSize: 8, color: Colors.white),
@@ -155,31 +157,31 @@ class ShopHome extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.name!!,
+                    product.name!,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(height: 1.3, fontSize: 13),
+                    style: const TextStyle(height: 1.3, fontSize: 13),
                   ),
                   Row(
                     children: [
                       Text(
                         '${product.price!.round()}',
-                        style: TextStyle(
+                        style: const TextStyle(
                             height: 1.3, fontSize: 13, color: defaultColor),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       if (product.oldPrice != 0)
                         Text(
                           '${product.oldPrice!.round()}',
-                          style: TextStyle(
+                          style: const TextStyle(
                               height: 1.3,
                               fontSize: 11,
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough),
                         ),
-                      Spacer(),
+                      const Spacer(),
                       IconButton(
                           onPressed: () {
                             ShopCubit.get(context).changeFavourite(product.id!);
@@ -191,7 +193,7 @@ class ShopHome extends StatelessWidget {
                                 ShopCubit.get(context).favorites[product.id]!
                                     ? defaultColor
                                     : Colors.grey,
-                            child: Icon(
+                            child: const Icon(
                               Icons.favorite_border,
                               color: Colors.white,
                               size: 14,
@@ -221,7 +223,7 @@ class ShopHome extends StatelessWidget {
             child: Text(
               category.name!,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 overflow: TextOverflow.ellipsis,
               ),

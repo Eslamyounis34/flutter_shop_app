@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shop_app/layout/shop_layout/cubit/shop_states.dart';
 import 'package:flutter_shop_app/models/categories_model.dart';
 import 'package:flutter_shop_app/models/change_favorites_model.dart';
-import 'package:flutter_shop_app/models/login_model.dart';
 import 'package:flutter_shop_app/modules/shop_app/shop_categories/shop_categories.dart';
 import 'package:flutter_shop_app/modules/shop_app/shop_favourites/shop_favourites.dart';
 import 'package:flutter_shop_app/modules/shop_app/shop_home/shop_home.dart';
@@ -27,10 +26,10 @@ class ShopCubit extends Cubit<ShopStates> {
   var token = CacheHelper.getData(key: 'token');
 
   List<Widget> screens = [
-    ShopHome(),
-    ShopCategories(),
-    ShopFavourites(),
-    ShopSettings(),
+    const ShopHome(),
+    const ShopCategories(),
+    const ShopFavourites(),
+    const ShopSettings(),
   ];
 
   void changeBottomSheet(int index) {
@@ -42,12 +41,12 @@ class ShopCubit extends Cubit<ShopStates> {
     emit(ShopHomeDataLoading());
     DioHelper.getData(url: HOME, token: '').then((value) {
       emit(ShopHomeDataSuccess());
-      homeModel = HomeModel.fromJson(value!.data);
-      homeModel!.data!.products.forEach((element) {
+      homeModel = HomeModel.fromJson(value.data);
+      for (var element in homeModel!.data!.products) {
         favorites.addAll({
           element.id!: element.inFavorite!,
         });
-      });
+      }
       print(homeModel!.status.toString());
     }).catchError((onError) {
       print('Error ' + onError.toString());
@@ -85,6 +84,17 @@ class ShopCubit extends Cubit<ShopStates> {
       favorites[productID] = !favorites[productID]!;
       emit(ShopChangeFavoritesError());
       print('Error Favorites : ' + onError.toString());
+    });
+  }
+
+  void getFavourites() {
+    DioHelper.getData(url: FAVORITES, token: CacheHelper.getData(key: 'token'))
+        .then((value) {
+          emit(ShopGetFavoritesSuccess());
+      print('Favorites : ' + value.toString());
+    }).catchError((onError) {
+      emit(ShopGetFavoritesError());
+      print(onError.toString());
     });
   }
 }
